@@ -1,18 +1,26 @@
-import { useHistory } from "react-router-dom"
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-import QuoteForm from "../components/quotes/QuoteForm"
+import QuoteForm from "../components/quotes/QuoteForm";
+import useHttp from "../hooks/use-http";
+import { addQuote } from "../lib/api";
 
 const NewQuote = () => {
-    const history = useHistory();
+ const { sendRequest, status } = useHttp(addQuote);
+  const history = useHistory();
 
-    const addQuoteHandler = (quoteData) => {
-        console.log(quoteData)
+  useEffect(() => {
+      if(status === 'completed') {
+          history.push('/quotes');
+      }
+  })
 
-        history.push('/quotes')
+  const addQuoteHandler = (quoteData) => {
+      sendRequest(quoteData)
+    console.log(quoteData);
+  };
 
-    }
+  return <QuoteForm isLoading={status === 'pending'} onAddQuote={addQuoteHandler} />;
+};
 
-    return <QuoteForm onAddQuote={addQuoteHandler}/>
-}
-
-export default NewQuote
+export default NewQuote;
