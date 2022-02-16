@@ -7,10 +7,10 @@ import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
-const DUMMY_QUOTES = [
-  { id: "q1", author: "Max", text: "Learning React is Fun" },
-  { id: "q2", author: "Sam", text: "Learning Angular is Great" },
-];
+// const DUMMY_QUOTES = [
+//   { id: "q1", author: "Max", text: "Learning React is Fun" },
+//   { id: "q2", author: "Sam", text: "Learning Angular is Great" },
+// ];
 const QuoteDetail = () => {
   const match = useRouteMatch();
   console.log(`useRouterMatch: ${match}`);
